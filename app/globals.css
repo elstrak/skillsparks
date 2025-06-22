@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #252525;
+  --foreground: #ffffff;
+  --sidebar-bg: #212121;
+  --card-bg: #3c3c3c;
+  --accent-purple: #5f30fa;
+  --accent-green: #aafd32;
+  --accent-blue: #3714d2;
+  --text-secondary: #aeaeae;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.beginner-badge {
+  background-color: var(--accent-blue);
+}
+
+.intermediate-badge {
+  background-color: #369365;
+}
+
+.professional-badge {
+  background-color: #933e36;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-1500 {
+  animation-delay: 1.5s;
+}
