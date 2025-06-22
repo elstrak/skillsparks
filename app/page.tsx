@@ -85,11 +85,13 @@ export default function Dashboard() {
                         </div>
                       </div>
                     </div>
+                    <Link href="/courses/smm-start">
                     <button className="box-border flex flex-row justify-center items-center p-[12px_20px] gap-[12px] m-0 auto w-[125px] h-[41px] border border-[#B1B1B1] rounded-[10px]">
-                      <span className="w-[85px] h-[17px] font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#B1B1B1]">
-                        Подробнее
-                      </span>
-                    </button>
+                    <span className="w-[85px] h-[17px] font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#B1B1B1]">
+                      Подробнее
+                    </span>
+                  </button>
+                  </Link>
                   </div>
 
                   {/* Course 2 */}
