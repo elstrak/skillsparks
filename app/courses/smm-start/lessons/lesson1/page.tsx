@@ -245,10 +245,10 @@ export default function Lesson1() {
     switch (currentStep) {
       case 1:
         return (
-          <div className={montserrat.variable + ' ' + unbounded.variable + 'flex flex-col gap-[40px] w-full'}>
+          <div className={montserrat.variable + ' ' + unbounded.variable + ' flex flex-col gap-[20px] sm:gap-[40px] w-full'}>
             {/* Messages */}
-            <div className="flex flex-row items-flex-end gap-[12px] w-full">
-              <div className="w-[51px] h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden">
+            <div className="flex flex-row items-flex-end gap-[8px] sm:gap-[12px] w-full">
+              <div className="w-[40px] h-[40px] sm:w-[51px] sm:h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden flex-shrink-0">
                 <Image
                   src="/girl.png"
                   alt="Tutor"
@@ -257,43 +257,43 @@ export default function Lesson1() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="flex flex-col justify-center gap-[12px] w-[369px]">
+              <div className="flex flex-col justify-center gap-[8px] sm:gap-[12px] w-full max-w-[369px]">
                 {visibleMessages.includes(1) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full h-[99px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[0].text}
                     </h3>
-                    <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white whitespace-pre-line">
+                    <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white whitespace-pre-line">
                       {messages[1].text}
                     </p>
                   </div>
                 )}
 
                 {visibleMessages.includes(3) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full h-[125px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white whitespace-pre-line">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white whitespace-pre-line">
                       {messages[2].text}
                     </p>
                   </div>
                 )}
 
                 {visibleMessages.includes(4) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full h-[116px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[3].text}
                     </h3>
-                    <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white whitespace-pre-line">
+                    <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white whitespace-pre-line">
                       {messages[4].text}
                     </p>
                   </div>
                 )}
 
                 {visibleMessages.includes(6) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full h-[99px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[5].text}
                     </h3>
-                    <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white whitespace-pre-line">
+                    <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white whitespace-pre-line">
                       {messages[6].text}
                     </p>
                   </div>
@@ -303,89 +303,45 @@ export default function Lesson1() {
 
             {/* Info cards */}
             {visibleMessages.length === messages.length && (
-              <div className="flex flex-row justify-between items-start gap-[40px] w-full animate-fadeIn mt-[20px]">
-                {/* Targeting card */}
-                <div className={`flex flex-col items-start p-[16px] gap-[16px] w-[240px] ${expandedCards.includes(infoCards[0].id) ? 'min-h-[178px]' : 'h-[178px]'} bg-[#DEEDFF] rounded-[12px] transition-all duration-300`}>
-                  <div className="flex flex-row items-center p-[8px] gap-[10px] w-[32px] h-[32px] bg-[#3C3C3C] rounded-[8px]">
-                    <div className="w-[16px] h-[16px] bg-[#FFF4CA] border border-[#FFB619] rounded-full"></div>
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-[20px] sm:gap-[40px] w-full animate-fadeIn mt-[20px]">
+                {infoCards.map((card, idx) => (
+                  <div
+                    key={card.id}
+                    className={`flex flex-col items-start p-[12px] sm:p-[16px] gap-[12px] sm:gap-[16px] w-full sm:w-[240px] ${expandedCards.includes(card.id) ? 'min-h-[140px] sm:min-h-[159px]' : 'h-[120px] sm:h-[159px]'} ${card.bgColor} rounded-[12px] transition-all duration-300`}
+                  >
+                    <div className="flex flex-row items-center p-[8px] gap-[10px] w-[32px] h-[32px] bg-[#3C3C3C] rounded-[8px]">
+                      <div className="w-[16px] h-[16px] bg-[#FFF4CA] border border-[#FFB619] rounded-full"></div>
+                    </div>
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[16px] sm:text-[18px] leading-[19px] sm:leading-[22px] text-[#353535]">
+                      {card.title}
+                    </h3>
+                    {expandedCards.includes(card.id) ? (
+                      <p className="w-full font-['Montserrat'] font-normal text-[12px] leading-[15px] text-[#5B5B5B]">
+                        {card.content}
+                      </p>
+                    ) : (
+                      <button
+                        onClick={() => toggleCard(card.id)}
+                        className="flex flex-row justify-center items-center p-[10px_16px] sm:p-[12px_20px] gap-[12px] w-[91px] h-[41px] bg-white rounded-[10px]"
+                      >
+                        <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
+                          Читать
+                        </span>
+                      </button>
+                    )}
                   </div>
-                  <h3 className="w-full font-['Montserrat'] font-semibold text-[18px] leading-[22px] text-[#353535]">
-                    {infoCards[0].title}
-                  </h3>
-                  {expandedCards.includes(infoCards[0].id) ? (
-                    <p className="w-full font-['Montserrat'] font-normal text-[12px] leading-[15px] text-[#5B5B5B]">
-                      {infoCards[0].content}
-                    </p>
-                  ) : (
-                    <button
-                      onClick={() => toggleCard(infoCards[0].id)}
-                      className="flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[91px] h-[41px] bg-white rounded-[10px]"
-                    >
-                      <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
-                        Читать
-                      </span>
-                    </button>
-                  )}
-                </div>
-
-                {/* CTR card */}
-                <div className={`flex flex-col items-start p-[16px] gap-[16px] w-[240px] ${expandedCards.includes(infoCards[1].id) ? 'min-h-[159px]' : 'h-[159px]'} bg-[#DEE1FF] rounded-[12px] transition-all duration-300`}>
-                  <div className="flex flex-row items-center p-[8px] gap-[10px] w-[32px] h-[32px] bg-[#3C3C3C] rounded-[8px]">
-                    <div className="w-[16px] h-[16px] bg-[#FFF4CA] border border-[#FFB619] rounded-full"></div>
-                  </div>
-                  <h3 className="w-full font-['Montserrat'] font-semibold text-[18px] leading-[22px] text-[#353535]">
-                    {infoCards[1].title}
-                  </h3>
-                  {expandedCards.includes(infoCards[1].id) ? (
-                    <p className="w-full font-['Montserrat'] font-normal text-[12px] leading-[15px] text-[#5B5B5B]">
-                      {infoCards[1].content}
-                    </p>
-                  ) : (
-                    <button
-                      onClick={() => toggleCard(infoCards[1].id)}
-                      className="flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[91px] h-[41px] bg-white rounded-[10px]"
-                    >
-                      <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
-                        Читать
-                      </span>
-                    </button>
-                  )}
-                </div>
-
-                {/* Content plan card */}
-                <div className={`flex flex-col items-start p-[16px] gap-[16px] w-[240px] ${expandedCards.includes(infoCards[2].id) ? 'min-h-[159px]' : 'h-[159px]'} bg-[#E2FFDE] rounded-[12px] transition-all duration-300`}>
-                  <div className="flex flex-row items-center p-[8px] gap-[10px] w-[32px] h-[32px] bg-[#3C3C3C] rounded-[8px]">
-                    <div className="w-[16px] h-[16px] bg-[#FFF4CA] border border-[#FFB619] rounded-full"></div>
-                  </div>
-                  <h3 className="w-full font-['Montserrat'] font-semibold text-[18px] leading-[22px] text-[#353535]">
-                    {infoCards[2].title}
-                  </h3>
-                  {expandedCards.includes(infoCards[2].id) ? (
-                    <p className="w-full font-['Montserrat'] font-normal text-[12px] leading-[15px] text-[#5B5B5B]">
-                      {infoCards[2].content}
-                    </p>
-                  ) : (
-                    <button
-                      onClick={() => toggleCard(infoCards[2].id)}
-                      className="flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[91px] h-[41px] bg-white rounded-[10px]"
-                    >
-                      <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
-                        Читать
-                      </span>
-                    </button>
-                  )}
-                </div>
+                ))}
               </div>
             )}
 
             {/* Next button */}
-            <div className="flex flex-col gap-[20px] w-full">
+            <div className="flex flex-col gap-[16px] sm:gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
-              <div className="flex flex-row justify-end items-center w-full h-[41px]">
+              <div className="flex flex-row justify-end items-center w-full h-[41px] gap-[20px] sm:gap-[40px]">
                 <button
                   onClick={goToNextStep}
                   disabled={!allCardsRead}
-                  className={`flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[219px] h-[41px] bg-white rounded-[10px] ${!allCardsRead ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`flex flex-row justify-center items-center p-[12px_16px] sm:p-[12px_20px] gap-[12px] w-full sm:w-[219px] h-[41px] bg-white rounded-[10px] ${!allCardsRead ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
                     Отлично, давай начнем!
@@ -398,10 +354,10 @@ export default function Lesson1() {
 
       case 2:
         return (
-          <div className="flex flex-col gap-[40px] w-full">
+          <div className="flex flex-col gap-[20px] sm:gap-[40px] w-full">
             {/* Game instructions */}
-            <div className="flex flex-row items-end gap-[12px] w-full">
-              <div className="w-[51px] h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden">
+            <div className="flex flex-row items-end gap-[8px] sm:gap-[12px] w-full">
+              <div className="w-[40px] h-[40px] sm:w-[51px] sm:h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden flex-shrink-0">
                 <Image
                   src="/girl.png"
                   alt="Tutor"
@@ -410,68 +366,70 @@ export default function Lesson1() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="box-border flex flex-col justify-end items-start p-[20px] gap-[8px] w-[369px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px]">
-                <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+              <div className="box-border flex flex-col justify-end items-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full max-w-[369px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px]">
+                <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                   Мини-игра "Собери SMM-пазл"
                 </h3>
-                <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white">
+                <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                   Соедини термины с их значениями
                 </p>
               </div>
             </div>
 
             {/* Matching game */}
-            <div className="w-full h-[348px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] relative">
-              {/* Left column (terms) */}
-              <div className="absolute flex flex-col gap-[8px] w-[356px] h-[316px] left-[16px] top-[16px]">
-                {matchingPairs.map((pair) => (
-                  <button
-                    key={`left-${pair.id}`}
-                    onClick={() => handleLeftSelection(pair.left)}
-                    className={`flex flex-row justify-center items-center p-[16px_20px] gap-[8px] w-full h-[100px] ${
-                      correctMatches.includes(pair.left) 
-                        ? "bg-[#417041] border-[#4C974C]" 
-                        : selectedLeft === pair.left 
-                        ? "bg-[#434343] border-[#6B6B6B] scale-[0.98] transition-transform duration-150" 
-                        : "bg-[#3C3C3C] border-[#4B4B4B] hover:bg-[#434343] hover:border-[#6B6B6B] transition-all duration-150"
-                    } border rounded-[12px]`}
-                    disabled={correctMatches.includes(pair.left)}
-                  >
-                    <span className="w-full font-['Montserrat'] font-medium text-[14px] leading-[17px] text-center text-white">
-                      {pair.left}
-                    </span>
-                  </button>
-                ))}
-              </div>
+            <div className="w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] p-3 sm:p-4 relative">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-0">
+                {/* Left column (terms) */}
+                <div className="flex flex-col gap-2 w-full sm:w-1/2">
+                  {matchingPairs.map((pair) => (
+                    <button
+                      key={`left-${pair.id}`}
+                      onClick={() => handleLeftSelection(pair.left)}
+                      className={`flex flex-row justify-center items-center p-[12px] sm:p-[16px_20px] gap-[8px] w-full h-[60px] sm:h-[100px] ${
+                        correctMatches.includes(pair.left) 
+                          ? "bg-[#417041] border-[#4C974C]" 
+                          : selectedLeft === pair.left 
+                          ? "bg-[#434343] border-[#6B6B6B] scale-[0.98] transition-transform duration-150" 
+                          : "bg-[#3C3C3C] border-[#4B4B4B] hover:bg-[#434343] hover:border-[#6B6B6B] transition-all duration-150"
+                      } border rounded-[12px] text-xs sm:text-[14px]`}
+                      disabled={correctMatches.includes(pair.left)}
+                    >
+                      <span className="w-full font-['Montserrat'] font-medium text-xs sm:text-[14px] leading-[16px] sm:leading-[17px] text-center text-white">
+                        {pair.left}
+                      </span>
+                    </button>
+                  ))}
+                </div>
 
-              {/* Right column (definitions) */}
-              <div className="absolute flex flex-col gap-[8px] w-[356px] h-[316px] left-[388px] top-[16px]">
-                {matchingPairs.map((pair) => (
-                  <button
-                    key={`right-${pair.id}`}
-                    onClick={() => handleRightSelection(pair.right)}
-                    className={`flex flex-row justify-center items-center p-[16px_20px] gap-[8px] w-full h-[100px] ${
-                      matchingPairs.some((p) => p.right === pair.right && correctMatches.includes(p.left))
-                        ? "bg-[#417041] border-[#4C974C]" 
-                        : selectedRight === pair.right 
-                        ? "bg-[#434343] border-[#6B6B6B] scale-[0.98] transition-transform duration-150" 
-                        : "bg-[#3C3C3C] border-[#4B4B4B] hover:bg-[#434343] hover:border-[#6B6B6B] transition-all duration-150"
-                    } border rounded-[12px]`}
-                    disabled={matchingPairs.some((p) => p.right === pair.right && correctMatches.includes(p.left))}
-                  >
-                    <span className="w-full font-['Montserrat'] font-medium text-[14px] leading-[17px] text-center text-white">
-                      {pair.right}
-                    </span>
-                  </button>
-                ))}
+                {/* Right column (definitions) */}
+                <div className="flex flex-col gap-2 w-full sm:w-1/2 mt-2 sm:mt-0">
+                  {matchingPairs.map((pair) => (
+                    <button
+                      key={`right-${pair.id}`}
+                      onClick={() => handleRightSelection(pair.right)}
+                      className={`flex flex-row justify-center items-center p-[12px] sm:p-[16px_20px] gap-[8px] w-full h-[60px] sm:h-[100px] ${
+                        matchingPairs.some((p) => p.right === pair.right && correctMatches.includes(p.left))
+                          ? "bg-[#417041] border-[#4C974C]" 
+                          : selectedRight === pair.right 
+                          ? "bg-[#434343] border-[#6B6B6B] scale-[0.98] transition-transform duration-150" 
+                          : "bg-[#3C3C3C] border-[#4B4B4B] hover:bg-[#434343] hover:border-[#6B6B6B] transition-all duration-150"
+                      } border rounded-[12px] text-xs sm:text-[14px]`}
+                      disabled={matchingPairs.some((p) => p.right === pair.right && correctMatches.includes(p.left))}
+                    >
+                      <span className="w-full font-['Montserrat'] font-medium text-xs sm:text-[14px] leading-[16px] sm:leading-[17px] text-center text-white">
+                        {pair.right}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Error message - positioned in center of screen */}
               {showError && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                  <div className="flex flex-row justify-center items-center p-[20px_28px] gap-[16px] w-[627px] h-[60px] bg-[#453232] border border-[#CD8989] rounded-[12px] animate-fadeIn shadow-lg">
-                    <AlertTriangle className="w-[20px] h-[20px] text-white" />
-                    <span className="font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white">
+                <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+                  <div className="flex flex-row justify-center items-center p-[16px_20px] sm:p-[20px_28px] gap-[12px] sm:gap-[16px] w-full max-w-[627px] min-h-[60px] bg-[#453232] border border-[#CD8989] rounded-[12px] animate-fadeIn shadow-lg">
+                    <AlertTriangle className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] text-white flex-shrink-0" />
+                    <span className="font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {errorMessage}
                     </span>
                   </div>
@@ -480,19 +438,19 @@ export default function Lesson1() {
             </div>
 
             {/* Next button */}
-            <div className="flex flex-col gap-[20px] w-full">
+            <div className="flex flex-col gap-[16px] sm:gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
-              <div className="flex flex-row justify-between items-center w-full h-[41px]">
+              <div className="flex flex-row justify-between items-center w-full h-[41px] gap-[20px] sm:gap-[40px]">
                 <button
                   onClick={() => setCurrentStep((prev) => prev - 1)}
-                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px]"
+                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px] flex-shrink-0"
                 >
                   <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD]" />
                 </button>
                 <button
                   onClick={goToNextStep}
                   disabled={correctMatches.length !== matchingPairs.length}
-                  className={`flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[87px] h-[41px] bg-white rounded-[10px] ${correctMatches.length !== matchingPairs.length ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`flex flex-row justify-center items-center p-[12px_16px] sm:p-[12px_20px] gap-[12px] w-full sm:w-[87px] h-[41px] bg-white rounded-[10px] ${correctMatches.length !== matchingPairs.length ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
                     Далее
@@ -708,30 +666,30 @@ export default function Lesson1() {
   }
 
   return (
-    <div className="relative w-full min-h-screen bg-[#212121] flex justify-center">
+    <div className="relative w-full min-h-screen bg-[#212121] flex justify-center px-4 sm:px-0">
       <Link
         href="/courses/smm-start"
-        className="box-border flex flex-row items-center p-[8px] gap-[10px] absolute w-[36px] h-[36px] left-[20px] top-[20px] border border-[#4B4B4B] rounded-[8px] z-10"
+        className="box-border flex flex-row items-center p-[8px] gap-[10px] absolute w-[36px] h-[36px] left-4 sm:left-[20px] top-[20px] border border-[#4B4B4B] rounded-[8px] z-10"
       >
         <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD] transform rotate-90" />
       </Link>
 
-      <div className="box-border flex flex-col items-start p-[40px] gap-[200px] w-[840px] min-h-[1163px] mt-[20px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px]">
-        <div className="flex flex-col items-start p-0 gap-[40px] w-[760px]">
+      <div className="box-border flex flex-col items-start p-4 sm:p-[40px] gap-[100px] sm:gap-[200px] w-full max-w-[840px] min-h-[1163px] mt-[20px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px]">
+        <div className="flex flex-col items-start p-0 gap-[20px] sm:gap-[40px] w-full">
           {/* Header */}
-          <div className="flex flex-col items-start p-0 gap-[40px] w-full">
-            <div className="flex flex-row justify-between items-center p-0 gap-[134px] w-full h-[49px]">
-              <div className="flex flex-col items-start p-0 gap-[8px] w-[368px] h-[49px]">
+          <div className="flex flex-col items-start p-0 gap-[20px] sm:gap-[40px] w-full">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-0 gap-[12px] sm:gap-[134px] w-full min-h-[49px]">
+              <div className="flex flex-col items-start p-0 gap-[8px] w-full sm:w-[368px] min-h-[49px]">
                 <span className="w-full h-[17px] font-['Montserrat'] font-normal text-[14px] leading-[17px] text-[#B6B6B6]">
                   Урок 1
                 </span>
-                <h1 className="w-[171px] h-[24px] font-['Montserrat'] font-semibold text-[20px] leading-[24px] text-white">
+                <h1 className="w-full font-['Montserrat'] font-semibold text-[18px] sm:text-[20px] leading-[22px] sm:leading-[24px] text-white">
                   Что такое SMM?
                 </h1>
               </div>
-              <div className="flex flex-row items-center p-0 gap-[12px] w-[258px] h-[20px]">
-                <div className="w-[224px] h-[20px] relative">
-                  <div className="absolute w-[224px] h-[20px] left-0 top-0 bg-[#606060] rounded-[4px]"></div>
+              <div className="flex flex-row items-center p-0 gap-[12px] w-full sm:w-[258px] h-[20px]">
+                <div className="flex-1 sm:w-[224px] h-[20px] relative">
+                  <div className="absolute w-full h-[20px] left-0 top-0 bg-[#606060] rounded-[4px]"></div>
                   <div
                     className="absolute h-[20px] left-0 top-0 bg-white rounded-[4px] transition-all duration-500 ease-in-out"
                     style={{ width: `${progress}%` }}

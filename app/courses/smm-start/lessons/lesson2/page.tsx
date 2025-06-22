@@ -73,7 +73,7 @@ export default function Lesson2() {
   const [allMessagesShown, setAllMessagesShown] = useState(false)
 
   // For step 2 (sorting game)
-  const [draggedItem, setDraggedItem] = useState<string | null>(null)
+  const [selectedItem, setSelectedItem] = useState<string | null>(null)
   const [droppedItems, setDroppedItems] = useState<{ [key: string]: string[] }>({
     dzen: [],
     telegram: [],
@@ -158,27 +158,16 @@ export default function Lesson2() {
     }
   }, [currentStep])
 
-  // Handle drag start
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, itemId: string) => {
-    setDraggedItem(itemId)
-    // Make the drag image transparent
-    const img = new window.Image()
-    img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-    e.dataTransfer.setDragImage(img, 0, 0)
+  // Handle item selection (click instead of drag)
+  const handleItemClick = (itemId: string) => {
+    setSelectedItem(itemId)
   }
 
-  // Handle drag over
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-  }
+  // Handle platform click (drop zone)
+  const handlePlatformClick = (platformId: string) => {
+    if (!selectedItem) return
 
-  // Handle drop
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>, platformId: string) => {
-    e.preventDefault()
-
-    if (!draggedItem) return
-
-    const contentItem = contentTypes.find((item) => item.id === draggedItem)
+    const contentItem = contentTypes.find((item) => item.id === selectedItem)
     if (!contentItem) return
 
     // Check if this is a correct match
@@ -186,12 +175,12 @@ export default function Lesson2() {
 
     if (isCorrect) {
       // Add to correct matches
-      setCorrectMatches((prev) => [...prev, draggedItem])
+      setCorrectMatches((prev) => [...prev, selectedItem])
 
       // Add to dropped items
       setDroppedItems((prev) => ({
         ...prev,
-        [platformId]: [...prev[platformId], draggedItem],
+        [platformId]: [...prev[platformId], selectedItem],
       }))
 
       // Check if game is completed
@@ -208,7 +197,7 @@ export default function Lesson2() {
       }, 2000)
     }
 
-    setDraggedItem(null)
+    setSelectedItem(null)
   }
 
   // Generate AI headline
@@ -238,10 +227,10 @@ export default function Lesson2() {
     switch (currentStep) {
       case 1:
         return (
-          <div className={montserrat.variable + ' ' + unbounded.variable + ' flex flex-col gap-[40px] w-full'}>
+          <div className={montserrat.variable + ' ' + unbounded.variable + ' flex flex-col gap-[20px] sm:gap-[40px] w-full'}>
             {/* Messages */}
-            <div className="flex flex-row items-flex-end gap-[12px] w-full">
-              <div className="w-[51px] h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden">
+            <div className="flex flex-row items-flex-end gap-[8px] sm:gap-[12px] w-full">
+              <div className="w-[40px] h-[40px] sm:w-[51px] sm:h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden flex-shrink-0">
                 <Image
                   src="/girl.png"
                   alt="Tutor"
@@ -250,24 +239,24 @@ export default function Lesson2() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="flex flex-col justify-center gap-[12px] w-[369px]">
+              <div className="flex flex-col justify-center gap-[8px] sm:gap-[12px] w-full max-w-[369px]">
                 {visibleMessages.includes(1) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[0].text}
                     </h3>
-                    <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white whitespace-pre-line">
+                    <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white whitespace-pre-line">
                       {messages[1].text}
                     </p>
                   </div>
                 )}
 
                 {visibleMessages.includes(3) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[2].text}
                     </h3>
-                    <ul className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white list-disc pl-5">
+                    <ul className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white list-disc pl-4 sm:pl-5">
                       {messages[2].bullets?.map((bullet, index) => (
                         <li key={index}>{bullet}</li>
                       ))}
@@ -276,11 +265,11 @@ export default function Lesson2() {
                 )}
 
                 {visibleMessages.includes(4) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[3].text}
                     </h3>
-                    <ul className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white list-disc pl-5">
+                    <ul className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white list-disc pl-4 sm:pl-5">
                       {messages[3].bullets?.map((bullet, index) => (
                         <li key={index}>{bullet}</li>
                       ))}
@@ -289,11 +278,11 @@ export default function Lesson2() {
                 )}
 
                 {visibleMessages.includes(5) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[4].text}
                     </h3>
-                    <ul className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white list-disc pl-5">
+                    <ul className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white list-disc pl-4 sm:pl-5">
                       {messages[4].bullets?.map((bullet, index) => (
                         <li key={index}>{bullet}</li>
                       ))}
@@ -302,11 +291,11 @@ export default function Lesson2() {
                 )}
 
                 {visibleMessages.includes(6) && (
-                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[20px] gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] animate-fadeIn">
-                    <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+                  <div className="box-border flex flex-col justify-flex-end items-flex-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] animate-fadeIn">
+                    <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {messages[5].text}
                     </h3>
-                    <ul className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white list-disc pl-5">
+                    <ul className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white list-disc pl-4 sm:pl-5">
                       {messages[5].bullets?.map((bullet, index) => (
                         <li key={index}>{bullet}</li>
                       ))}
@@ -317,13 +306,13 @@ export default function Lesson2() {
             </div>
 
             {/* Next button */}
-            <div className="flex flex-col gap-[20px] w-full">
+            <div className="flex flex-col gap-[16px] sm:gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
               <div className="flex flex-row justify-end items-center w-full h-[41px]">
                 <button
                   onClick={goToNextStep}
                   disabled={!allMessagesShown}
-                  className={`flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[219px] h-[41px] bg-white rounded-[10px] ${!allMessagesShown ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`flex flex-row justify-center items-center p-[12px_16px] sm:p-[12px_20px] gap-[12px] w-full sm:w-[219px] h-[41px] bg-white rounded-[10px] ${!allMessagesShown ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
                     Отлично, давай начнем!
@@ -336,10 +325,10 @@ export default function Lesson2() {
 
       case 2:
         return (
-          <div className="flex flex-col gap-[40px] w-full">
+          <div className="flex flex-col gap-[20px] sm:gap-[40px] w-full">
             {/* Game instructions */}
-            <div className="flex flex-row items-end gap-[12px] w-full">
-              <div className="w-[51px] h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden">
+            <div className="flex flex-row items-end gap-[8px] sm:gap-[12px] w-full">
+              <div className="w-[40px] h-[40px] sm:w-[51px] sm:h-[51px] rounded-[12px] border border-[#4B4B4B] overflow-hidden flex-shrink-0">
                 <Image
                   src="/girl.png"
                   alt="Tutor"
@@ -348,36 +337,118 @@ export default function Lesson2() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="box-border flex flex-col justify-end items-start p-[20px] gap-[8px] w-[369px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px]">
-                <h3 className="w-full font-['Montserrat'] font-semibold text-[14px] leading-[17px] text-white">
+              <div className="box-border flex flex-col justify-end items-start p-[12px] sm:p-[20px] gap-[6px] sm:gap-[8px] w-full max-w-[369px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px]">
+                <h3 className="w-full font-['Montserrat'] font-semibold text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                   Мини-игра "Сортировка контента"
                 </h3>
-                <p className="w-full font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white">
-                  Распредели контент по платформам
+                <p className="w-full font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
+                  {selectedItem ? "Теперь выбери платформу для этого контента" : "Выбери контент, затем платформу"}
                 </p>
               </div>
             </div>
 
             {/* Sorting game */}
-            <div className="w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px] p-4 relative">
-              <div className="flex flex-row gap-0 mb-4 relative">
-                {/* Content column */}
-                <div className="w-1/5 bg-[#2C2C2C] p-2 rounded-[12px] border-r border-[#4B4B4B]">
-                  <h3 className="text-white text-center font-medium mb-2 bg-[#3C3C3C] p-2 rounded-[8px]">Контент</h3>
-                  <div className="flex flex-col gap-2">
+            <div className="w-full bg-[#3C3C3C] border border-[#4B4B4B] rounded-[16px] sm:rounded-[20px] p-3 sm:p-4 relative">
+              {/* Mobile layout - vertical stacking */}
+              <div className="flex flex-col gap-4 sm:hidden">
+                {/* Content section */}
+                <div className="w-full bg-[#2C2C2C] p-3 rounded-[12px] border border-[#4B4B4B]">
+                  <h3 className="text-white text-center font-medium mb-3 bg-[#3C3C3C] p-2 rounded-[8px] text-sm">Контент</h3>
+                  <div className="grid grid-cols-2 gap-2">
                     {contentTypes.map((item) => {
-                      // Skip if already matched
                       if (correctMatches.includes(item.id)) return null
 
                       return (
-                        <div
+                        <button
                           key={item.id}
-                          className="bg-[#3C3C3C] p-2 rounded-[8px] text-white text-sm cursor-move hover:bg-[#434343] hover:border-[#6B6B6B] border border-transparent transition-all duration-150 active:scale-[0.98]"
-                          draggable
-                          onDragStart={(e) => handleDragStart(e, item.id)}
+                          onClick={() => handleItemClick(item.id)}
+                          className={`bg-[#3C3C3C] p-3 rounded-[8px] text-white text-xs cursor-pointer border transition-all duration-150 ${
+                            selectedItem === item.id 
+                              ? 'border-[#6B6B6B] bg-[#434343] scale-[1.02]' 
+                              : 'border-transparent hover:bg-[#434343] hover:border-[#6B6B6B] active:scale-[0.98]'
+                          }`}
                         >
                           {item.name}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* Platforms section */}
+                <div className="w-full bg-[#2C2C2C] p-3 rounded-[12px] border border-[#4B4B4B]">
+                  <h3 className="text-white text-center font-medium mb-3 bg-[#3C3C3C] p-2 rounded-[8px] text-sm">Платформы</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {platforms.map((platform) => (
+                      <button
+                        key={platform.id}
+                        onClick={() => handlePlatformClick(platform.id)}
+                        disabled={!selectedItem}
+                        className={`relative p-3 rounded-[8px] border transition-all duration-150 ${
+                          selectedItem 
+                            ? 'bg-[#3C3C3C] border-[#6B6B6B] hover:bg-[#434343] hover:border-[#8B8B8B] active:scale-[0.98]' 
+                            : 'bg-[#2A2A2A] border-[#4B4B4B] opacity-50 cursor-not-allowed'
+                        }`}
+                      >
+                        <div className="flex flex-col items-center gap-2">
+                          <Image
+                            src={platform.icon || "/placeholder.svg"}
+                            alt={platform.name || platform.id}
+                            width={24}
+                            height={24}
+                            className="rounded-full w-6 h-6"
+                          />
+                          <span className="text-white font-medium text-xs text-center">
+                            {platform.name || platform.id}
+                          </span>
                         </div>
+                        
+                        {/* Dropped items */}
+                        <div className="mt-2 space-y-1">
+                          {droppedItems[platform.id].map((itemId) => {
+                            const item = contentTypes.find((c) => c.id === itemId)
+                            if (!item) return null
+
+                            return (
+                              <div
+                                key={itemId}
+                                className="bg-[#417041] border border-[#4C974C] p-1 rounded-[4px] text-white text-xs animate-fadeIn"
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span className="truncate">{item.name}</span>
+                                  <Check className="w-3 h-3 flex-shrink-0" />
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop layout - horizontal layout */}
+              <div className="hidden sm:flex flex-row gap-0 mb-4 relative">
+                {/* Content column */}
+                <div className="w-1/5 bg-[#2C2C2C] p-2 rounded-[12px] border-r border-[#4B4B4B]">
+                  <h3 className="text-white text-center font-medium mb-2 bg-[#3C3C3C] p-2 rounded-[8px] text-sm">Контент</h3>
+                  <div className="flex flex-col gap-2">
+                    {contentTypes.map((item) => {
+                      if (correctMatches.includes(item.id)) return null
+
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => handleItemClick(item.id)}
+                          className={`bg-[#3C3C3C] p-2 rounded-[8px] text-white text-sm cursor-pointer border transition-all duration-150 ${
+                            selectedItem === item.id 
+                              ? 'border-[#6B6B6B] bg-[#434343] scale-[1.02]' 
+                              : 'border-transparent hover:bg-[#434343] hover:border-[#6B6B6B] active:scale-[0.98]'
+                          }`}
+                        >
+                          {item.name}
+                        </button>
                       )
                     })}
                   </div>
@@ -390,19 +461,25 @@ export default function Lesson2() {
                     className={`w-1/5 bg-[#2C2C2C] p-2 rounded-[12px] ${
                       index < platforms.length - 1 ? 'border-r border-[#4B4B4B]' : ''
                     }`}
-                    onDragOver={handleDragOver}
-                    onDrop={(e) => handleDrop(e, platform.id)}
                   >
-                    <div className="flex items-center justify-center gap-2 mb-2 bg-[#3C3C3C] p-2 rounded-[8px]">
+                    <button
+                      onClick={() => handlePlatformClick(platform.id)}
+                      disabled={!selectedItem}
+                      className={`w-full flex items-center justify-center gap-2 mb-2 p-2 rounded-[8px] transition-all duration-150 ${
+                        selectedItem 
+                          ? 'bg-[#3C3C3C] hover:bg-[#434343]' 
+                          : 'bg-[#2A2A2A] opacity-50 cursor-not-allowed'
+                      }`}
+                    >
                       <Image
                         src={platform.icon || "/placeholder.svg"}
-                        alt={platform.name}
+                        alt={platform.name || platform.id}
                         width={24}
                         height={24}
-                        className="rounded-full"
+                        className="rounded-full w-6 h-6"
                       />
-                      <h3 className="text-white font-medium">{platform.name}</h3>
-                    </div>
+                      <h3 className="text-white font-medium text-sm">{platform.name || platform.id}</h3>
+                    </button>
 
                     <div className="flex flex-col gap-2 min-h-[200px]">
                       {droppedItems[platform.id].map((itemId) => {
@@ -414,8 +491,10 @@ export default function Lesson2() {
                             key={itemId}
                             className="bg-[#417041] border border-[#4C974C] p-2 rounded-[8px] text-white text-sm animate-fadeIn"
                           >
-                            {item.name}
-                            <Check className="inline-block ml-2 w-4 h-4" />
+                            <div className="flex items-center justify-between">
+                              <span>{item.name}</span>
+                              <Check className="w-4 h-4 flex-shrink-0" />
+                            </div>
                           </div>
                         )
                       })}
@@ -424,12 +503,12 @@ export default function Lesson2() {
                 ))}
               </div>
 
-              {/* Error message - positioned in center of screen */}
+              {/* Error message */}
               {showError && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                  <div className="flex flex-row justify-center items-center p-[20px_28px] gap-[16px] w-[627px] h-[60px] bg-[#453232] border border-[#CD8989] rounded-[12px] animate-fadeIn shadow-lg">
-                    <AlertTriangle className="w-[20px] h-[20px] text-white" />
-                    <span className="font-['Montserrat'] font-normal text-[14px] leading-[17px] text-white">
+                <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+                  <div className="flex flex-row justify-center items-center p-[16px_20px] sm:p-[20px_28px] gap-[12px] sm:gap-[16px] w-full max-w-[627px] min-h-[60px] bg-[#453232] border border-[#CD8989] rounded-[12px] animate-fadeIn shadow-lg">
+                    <AlertTriangle className="w-[16px] h-[16px] sm:w-[20px] sm:h-[20px] text-white flex-shrink-0" />
+                    <span className="font-['Montserrat'] font-normal text-[13px] sm:text-[14px] leading-[16px] sm:leading-[17px] text-white">
                       {errorMessage}
                     </span>
                   </div>
@@ -438,19 +517,19 @@ export default function Lesson2() {
             </div>
 
             {/* Next button */}
-            <div className="flex flex-col gap-[20px] w-full">
+            <div className="flex flex-col gap-[16px] sm:gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
-              <div className="flex flex-row justify-between items-center w-full h-[41px]">
+              <div className="flex flex-row justify-between items-center w-full h-[41px] gap-[20px] sm:gap-[40px]">
                 <button
                   onClick={() => setCurrentStep((prev) => prev - 1)}
-                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px]"
+                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px] flex-shrink-0"
                 >
                   <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD]" />
                 </button>
                 <button
                   onClick={goToNextStep}
                   disabled={!gameCompleted}
-                  className={`flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[87px] h-[41px] bg-white rounded-[10px] ${!gameCompleted ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`flex flex-row justify-center items-center p-[12px_16px] sm:p-[12px_20px] gap-[12px] w-full sm:w-[87px] h-[41px] bg-white rounded-[10px] ${!gameCompleted ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
                     Далее
@@ -463,25 +542,25 @@ export default function Lesson2() {
 
       case 3:
         return (
-          <div className="flex flex-col items-center gap-[40px] w-full">
+          <div className="flex flex-col items-center gap-[20px] sm:gap-[40px] w-full">
             {/* Achievement */}
-            <div className="flex flex-col items-center gap-[20px] w-[215px] h-[302px] animate-fadeIn">
-              <div className="w-[200px] h-[200px] relative">
-                <div className="absolute w-[118px] h-[118px] left-[calc(50%-118px/2)] top-[calc(50%-118px/2)] bg-[#87EC00] filter blur-[47px]"></div>
+            <div className="flex flex-col items-center gap-[16px] sm:gap-[20px] w-full max-w-[215px] min-h-[302px] animate-fadeIn">
+              <div className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] relative">
+                <div className="absolute w-[88px] h-[88px] sm:w-[118px] sm:h-[118px] left-[calc(50%-88px/2)] sm:left-[calc(50%-118px/2)] top-[calc(50%-88px/2)] sm:top-[calc(50%-118px/2)] bg-[#87EC00] filter blur-[35px] sm:blur-[47px]"></div>
                 <Image
                   src="/312b920f786de034f08286d0f6c72aa9e56a8901 (1).png"
                   alt="Achievement"
                   width={200}
                   height={200}
-                  className="absolute w-[200px] h-[200px] left-[calc(50%-200px/2)] top-[calc(50%-200px/2)] object-cover rounded-[16px]"
+                  className="absolute w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] left-[calc(50%-150px/2)] sm:left-[calc(50%-200px/2)] top-[calc(50%-150px/2)] sm:top-[calc(50%-200px/2)] object-cover rounded-[12px] sm:rounded-[16px]"
                 />
               </div>
-              <div className="flex flex-col items-center gap-[12px] w-[215px]">
-                <h2 className="w-full font-['Montserrat'] font-extrabold text-[28px] leading-[34px] text-center text-white">
+              <div className="flex flex-col items-center gap-[8px] sm:gap-[12px] w-full">
+                <h2 className="w-full font-['Montserrat'] font-extrabold text-[24px] sm:text-[28px] leading-[29px] sm:leading-[34px] text-center text-white">
                   Новичок SMM
                 </h2>
-                <div className="flex flex-row justify-center items-center p-[8px_16px] gap-[10px] w-[115px] h-[36px] bg-[#417041] border border-[#4C974C] rounded-[110px]">
-                  <span className="font-['Montserrat'] font-semibold text-[16px] leading-[20px] whitespace-nowrap text-white">
+                <div className="flex flex-row justify-center items-center p-[6px_12px] sm:p-[8px_16px] gap-[8px] sm:gap-[10px] w-[100px] sm:w-[115px] h-[32px] sm:h-[36px] bg-[#417041] border border-[#4C974C] rounded-[110px]">
+                  <span className="font-['Montserrat'] font-semibold text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] whitespace-nowrap text-white">
                     +15 опыта
                   </span>
                 </div>
@@ -489,18 +568,18 @@ export default function Lesson2() {
             </div>
 
             {/* Next button */}
-            <div className="flex flex-col gap-[20px] w-full">
+            <div className="flex flex-col gap-[16px] sm:gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
-              <div className="flex flex-row justify-between items-center w-full h-[41px]">
+              <div className="flex flex-row justify-between items-center w-full h-[41px] gap-[20px] sm:gap-[40px]">
                 <button
                   onClick={() => setCurrentStep((prev) => prev - 1)}
-                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px]"
+                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px] flex-shrink-0"
                 >
                   <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD]" />
                 </button>
                 <button
                   onClick={goToNextStep}
-                  className="flex flex-row justify-center items-center p-[12px_20px] gap-[12px] w-[87px] h-[41px] bg-white rounded-[10px]"
+                  className="flex flex-row justify-center items-center p-[12px_16px] sm:p-[12px_20px] gap-[12px] w-full sm:w-[87px] h-[41px] bg-white rounded-[10px]"
                 >
                   <span className="font-['Montserrat'] font-medium text-[14px] leading-[17px] text-[#212121]">
                     Далее
@@ -591,10 +670,10 @@ export default function Lesson2() {
             {/* Next button */}
             <div className="flex flex-col gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
-              <div className="flex flex-row justify-between items-center w-full h-[41px]">
+              <div className="flex flex-row justify-between items-center w-full h-[41px] gap-[20px] sm:gap-[40px]">
                 <button
                   onClick={() => setCurrentStep((prev) => prev - 1)}
-                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px]"
+                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px] flex-shrink-0"
                 >
                   <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD]" />
                 </button>
@@ -642,10 +721,10 @@ export default function Lesson2() {
             {/* Next button */}
             <div className="flex flex-col gap-[20px] w-full">
               <div className="w-full h-0 opacity-40 border border-[#4B4B4B]"></div>
-              <div className="flex flex-row justify-between items-center w-full h-[41px]">
+              <div className="flex flex-row justify-between items-center w-full h-[41px] gap-[20px] sm:gap-[40px]">
                 <button
                   onClick={() => setCurrentStep((prev) => prev - 1)}
-                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px]"
+                  className="box-border flex flex-row items-center p-[8px] gap-[10px] w-[36px] h-[36px] border border-[#4B4B4B] rounded-[8px] flex-shrink-0"
                 >
                   <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD]" />
                 </button>
@@ -665,31 +744,31 @@ export default function Lesson2() {
   }
 
   return (
-    <div className="relative w-full min-h-screen bg-[#212121] flex justify-center">
+    <div className="relative w-full min-h-screen bg-[#212121] flex justify-center px-4 sm:px-0">
       <style jsx global>{fadeInAnimation}</style>
       <Link
         href="/courses/smm-start"
-        className="box-border flex flex-row items-center p-[8px] gap-[10px] absolute w-[36px] h-[36px] left-[20px] top-[20px] border border-[#4B4B4B] rounded-[8px] z-10"
+        className="box-border flex flex-row items-center p-[8px] gap-[10px] absolute w-[36px] h-[36px] left-4 sm:left-[20px] top-[20px] border border-[#4B4B4B] rounded-[8px] z-10"
       >
         <ChevronLeft className="w-[20px] h-[20px] text-[#DDDDDD] transform rotate-90" />
       </Link>
 
-      <div className="box-border flex flex-col items-start p-[40px] gap-[200px] w-[840px] min-h-[1163px] mt-[20px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px]">
-        <div className="flex flex-col items-start p-0 gap-[40px] w-[760px]">
+      <div className="box-border flex flex-col items-start p-4 sm:p-[40px] gap-[100px] sm:gap-[200px] w-full max-w-[840px] min-h-[1163px] mt-[20px] bg-[#3C3C3C] border border-[#4B4B4B] rounded-[20px]">
+        <div className="flex flex-col items-start p-0 gap-[20px] sm:gap-[40px] w-full">
           {/* Header */}
-          <div className="flex flex-col items-start p-0 gap-[40px] w-full">
-            <div className="flex flex-row justify-between items-center p-0 gap-[134px] w-full h-[49px]">
-              <div className="flex flex-col items-start p-0 gap-[8px] w-[368px] h-[49px]">
+          <div className="flex flex-col items-start p-0 gap-[20px] sm:gap-[40px] w-full">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-0 gap-[12px] sm:gap-[134px] w-full min-h-[49px]">
+              <div className="flex flex-col items-start p-0 gap-[8px] w-full sm:w-[368px] min-h-[49px]">
                 <span className="w-full h-[17px] font-['Montserrat'] font-normal text-[14px] leading-[17px] text-[#B6B6B6]">
                   Урок 2
                 </span>
-                <h1 className="w-[368px] h-[24px] font-['Montserrat'] font-semibold text-[20px] leading-[24px] text-white">
+                <h1 className="w-full font-['Montserrat'] font-semibold text-[18px] sm:text-[20px] leading-[22px] sm:leading-[24px] text-white">
                   Платформы для продвижения в России
                 </h1>
               </div>
-              <div className="flex flex-row items-center p-0 gap-[12px] w-[258px] h-[20px]">
-                <div className="w-[224px] h-[20px] relative">
-                  <div className="absolute w-[224px] h-[20px] left-0 top-0 bg-[#606060] rounded-[4px]"></div>
+              <div className="flex flex-row items-center p-0 gap-[12px] w-full sm:w-[258px] h-[20px]">
+                <div className="flex-1 sm:w-[224px] h-[20px] relative">
+                  <div className="absolute w-full h-[20px] left-0 top-0 bg-[#606060] rounded-[4px]"></div>
                   <div
                     className="absolute h-[20px] left-0 top-0 bg-white rounded-[4px] transition-all duration-500 ease-in-out"
                     style={{ width: `${progress}%` }}

@@ -10,9 +10,9 @@ const unbounded = Unbounded({
 
 export default function Footer() {
   return (
-    <div className="flex flex-col items-center p-0 gap-[40px] w-[1270px] h-[101px]">
-      <div className="w-[1270px] h-0 opacity-40 border border-white"></div>
-      <div className={unbounded.variable + ' w-[179px] h-[25px] font-black text-[20px] leading-[25px] text-center uppercase text-white'}>
+    <div className="flex flex-col items-center p-0 gap-[20px] sm:gap-[40px] w-full">
+      <div className="w-full h-px opacity-40 bg-white"></div>
+      <div className={`${unbounded.variable} font-black text-lg sm:text-xl leading-snug text-center uppercase text-white`}>
         SKILLSPARKS
       </div>
     </div>
